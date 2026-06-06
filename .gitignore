@@ -1,0 +1,46 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!backend/.env.example
+!mobile/.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+backend/.venv/
+
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+mobile/.dart_tool/
+mobile/build/
+
+# Android/Gradle
+.gradle/
+mobile/android/.gradle/
+mobile/android/app/debug/
+mobile/android/app/profile/
+mobile/android/app/release/
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+
+# Logs
+*.log
