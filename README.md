@@ -1,6 +1,6 @@
-# FocusStudy AI
+# Focus
 
-FocusStudy AI convierte el celular en una herramienta de estudio: bloquea distracciones durante una sesion y valida el aprendizaje con preguntas generadas por IA antes de desbloquear.
+Focus convierte el celular en una herramienta de estudio: bloquea distracciones durante una sesion y valida el aprendizaje con preguntas generadas por IA antes de desbloquear.
 
 ## Estructura
 

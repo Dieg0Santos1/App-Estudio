@@ -53,6 +53,8 @@ La app movil consume endpoints propios. El backend usa `OPENAI_API_KEY` y la Res
 - dar feedback;
 - detectar conceptos debiles.
 
+Modelo inicial: `gpt-5.4-mini`, elegido por equilibrio entre velocidad, costo y calidad para respuestas breves y evaluaciones educativas.
+
 ## Supabase
 
 Supabase cubre:

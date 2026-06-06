@@ -18,6 +18,15 @@ Docker Desktop esta instalado, pero el motor Linux requiere WSL y `Virtual Machi
 supabase start
 ```
 
+## Servicios opcionales
+
+Firebase y Google Cloud quedan fuera por ahora.
+
+- Firebase serviria mas adelante para notificaciones push, Crashlytics y analytics.
+- Google Cloud serviria para desplegar el backend en Cloud Run u OCR avanzado.
+
+La siguiente etapa puede funcionar con Supabase + OpenAI + desarrollo local.
+
 ## Backend
 
 ```powershell

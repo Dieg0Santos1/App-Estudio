@@ -11,7 +11,7 @@ class FocusStudyApp extends ConsumerWidget {
     final router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
-      title: 'FocusStudy AI',
+      title: 'Focus',
       debugShowCheckedModeBanner: false,
       routerConfig: router,
       theme: ThemeData(
