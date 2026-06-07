@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.routes import ai, health, materials
+from app.routes import ai, health, materials, study_sessions
 
 
 def create_app() -> FastAPI:
@@ -23,6 +23,7 @@ def create_app() -> FastAPI:
     app.include_router(health.router)
     app.include_router(ai.router, prefix="/ai", tags=["ai"])
     app.include_router(materials.router, prefix="/materials", tags=["materials"])
+    app.include_router(study_sessions.router, prefix="/study-sessions", tags=["study-sessions"])
 
     return app
 

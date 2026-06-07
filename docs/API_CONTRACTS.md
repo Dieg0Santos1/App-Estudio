@@ -71,6 +71,67 @@ title: titulo opcional
 
 `DELETE /materials/{material_id}`
 
+## Sesiones de Estudio
+
+Estos endpoints usan temporalmente `X-User-Id`, igual que materiales. Una sesion nace como `draft`,
+pasa a `active` cuando inicia el modo foco y queda en `pending_quiz` al completarse.
+
+### Crear Sesion
+
+`POST /study-sessions`
+
+```json
+{
+  "topic": "Programacion Orientada a Objetos",
+  "duration_minutes": 45,
+  "mode": "normal",
+  "study_method": "visual",
+  "material_ids": ["00000000-0000-0000-0000-000000000000"]
+}
+```
+
+Respuesta:
+
+```json
+{
+  "session": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "topic": "Programacion Orientada a Objetos",
+    "duration_minutes": 45,
+    "mode": "normal",
+    "study_method": "visual",
+    "started_at": null,
+    "ended_at": null,
+    "status": "draft",
+    "score": null,
+    "unlock_status": "locked",
+    "created_at": "2026-06-06T22:20:00Z",
+    "material_ids": ["00000000-0000-0000-0000-000000000000"]
+  }
+}
+```
+
+### Listar y Ver Detalle
+
+`GET /study-sessions`
+
+`GET /study-sessions/{session_id}`
+
+### Ciclo de Vida
+
+`POST /study-sessions/{session_id}/start`
+
+Marca la sesion como `active`, registra `started_at` y mantiene el desbloqueo en `locked`.
+
+`POST /study-sessions/{session_id}/complete`
+
+Marca la sesion como `completed`, registra `ended_at` y cambia `unlock_status` a `pending_quiz`.
+
+`POST /study-sessions/{session_id}/cancel`
+
+Cancela sesiones `draft` o `active`.
+
 ## Generar Preguntas
 
 `POST /ai/questions`

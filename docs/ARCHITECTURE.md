@@ -43,6 +43,7 @@ Las pantallas actuales son placeholders tecnicos. Las vistas de Stitch/Figma ent
 - `schemas`: contratos Pydantic.
 - `ai`: proveedores de IA y abstracciones.
 - `documents`: extraccion de texto desde material academico.
+- `services`: reglas de aplicacion para materiales, sesiones y futuros flujos de quiz.
 - `core`: configuracion e infraestructura.
 
 ## OpenAI
@@ -66,6 +67,14 @@ Cada sesion debe registrar un metodo de estudio:
 - `mixed`: ruta combinada de lectura, escucha, practica y evaluacion.
 
 El modo concentracion no sera solo temporizador: mostrara contenido activo segun el metodo elegido.
+
+Flujo base de producto:
+
+1. El usuario crea o sube materiales.
+2. Crea una sesion con tema, duracion, modo y metodo de estudio.
+3. Inicia la sesion; Android aplica el bloqueo y la app muestra contenido activo.
+4. Al completar el tiempo, la sesion pasa a quiz pendiente.
+5. El quiz decide si el telefono se desbloquea o si hay repaso adicional.
 
 ## Supabase
 
