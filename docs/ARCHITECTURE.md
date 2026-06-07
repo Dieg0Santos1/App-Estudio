@@ -78,3 +78,5 @@ Supabase cubre:
 - Row Level Security.
 
 La primera migracion define las tablas centrales de producto y politicas RLS por usuario.
+
+Cuando Supabase Auth crea un usuario, un trigger crea automaticamente su fila en `profiles`.
