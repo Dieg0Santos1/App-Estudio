@@ -35,6 +35,13 @@ Flutter UI
 
 Las pantallas actuales son placeholders tecnicos. Las vistas de Stitch/Figma entran despues, cuando los contratos de datos esten claros.
 
+La capa mobile de datos replica esos dominios con modelos y repositorios:
+
+- `library/data`: materiales y subida de archivos.
+- `study_session/data`: creacion y ciclo de vida de sesiones.
+- `focus_mode/data`: assets activos segun metodo de estudio.
+- `unlock_quiz/data`: quiz, respuestas, feedback y progreso de desbloqueo.
+
 ## Backend
 
 `backend/app` separa:
