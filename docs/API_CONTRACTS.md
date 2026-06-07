@@ -132,6 +132,93 @@ Marca la sesion como `completed`, registra `ended_at` y cambia `unlock_status` a
 
 Cancela sesiones `draft` o `active`.
 
+## Quiz de Desbloqueo
+
+El quiz se genera solo cuando la sesion ya esta `completed` y su `unlock_status` esta en
+`pending_quiz`. El backend guarda la respuesta correcta, pero no la entrega al cliente antes de que
+el usuario conteste.
+
+### Generar Quiz
+
+`POST /study-sessions/{session_id}/quiz`
+
+```json
+{
+  "question_count": 5,
+  "difficulty": "medium",
+  "question_type": "mixed"
+}
+```
+
+Respuesta:
+
+```json
+{
+  "session_id": "00000000-0000-0000-0000-000000000000",
+  "questions": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "session_id": "00000000-0000-0000-0000-000000000000",
+      "question_text": "Que es el polimorfismo?",
+      "question_type": "multiple_choice",
+      "options": [{ "id": "A", "text": "..." }],
+      "difficulty": "medium",
+      "related_concepts": ["Polimorfismo"],
+      "source_hint": "Material 1",
+      "created_at": "2026-06-06T22:20:00Z",
+      "answered": false
+    }
+  ],
+  "progress": {
+    "total_questions": 5,
+    "answered_questions": 0,
+    "average_score": null,
+    "passing_score": 0.7,
+    "unlock_status": "pending_quiz",
+    "passed": false
+  }
+}
+```
+
+### Ver Quiz
+
+`GET /study-sessions/{session_id}/quiz`
+
+### Responder
+
+`POST /study-sessions/{session_id}/quiz/answers`
+
+```json
+{
+  "question_id": "00000000-0000-0000-0000-000000000000",
+  "answer_text": "El polimorfismo permite que distintas clases respondan distinto al mismo metodo."
+}
+```
+
+Respuesta:
+
+```json
+{
+  "question_id": "00000000-0000-0000-0000-000000000000",
+  "answer_text": "El polimorfismo permite que distintas clases respondan distinto al mismo metodo.",
+  "evaluation": {
+    "is_correct": true,
+    "score": 0.85,
+    "feedback": "Correcto; explica la idea central.",
+    "missing_concepts": [],
+    "reinforced_concepts": ["Polimorfismo"]
+  },
+  "progress": {
+    "total_questions": 5,
+    "answered_questions": 5,
+    "average_score": 0.82,
+    "passing_score": 0.7,
+    "unlock_status": "unlocked",
+    "passed": true
+  }
+}
+```
+
 ## Generar Preguntas
 
 `POST /ai/questions`

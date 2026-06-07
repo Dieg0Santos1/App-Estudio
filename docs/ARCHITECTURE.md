@@ -76,6 +76,10 @@ Flujo base de producto:
 4. Al completar el tiempo, la sesion pasa a quiz pendiente.
 5. El quiz decide si el telefono se desbloquea o si hay repaso adicional.
 
+El quiz de desbloqueo oculta respuestas correctas en el cliente. Cada respuesta se evalua con IA
+contra la respuesta esperada y la explicacion generada; el backend calcula el promedio final y cambia
+`unlock_status` a `unlocked` cuando supera el umbral inicial de 0.7.
+
 ## Supabase
 
 Supabase cubre:
