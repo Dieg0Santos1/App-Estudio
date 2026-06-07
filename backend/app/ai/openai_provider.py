@@ -10,6 +10,7 @@ from app.schemas.ai import (
     QuestionGenerationRequest,
     QuestionGenerationResult,
 )
+from app.schemas.study_assets import StudyAssetGenerationRequest, StudyAssetGenerationResult
 
 
 class OpenAIProvider(AIProvider):
@@ -64,6 +65,29 @@ class OpenAIProvider(AIProvider):
         )
         return AnswerEvaluationResult.model_validate(json.loads(response.output_text))
 
+    async def generate_study_assets(
+        self,
+        request: StudyAssetGenerationRequest,
+    ) -> StudyAssetGenerationResult:
+        response = await self._client.responses.create(
+            model=self._model,
+            instructions=(
+                "Eres un entrenador de estudio. Convierte material academico en contenido "
+                "activo para una sesion de concentracion. Debe ser claro, breve, accionable "
+                "y adaptado al metodo elegido."
+            ),
+            input=self._study_assets_prompt(request),
+            text={
+                "format": {
+                    "type": "json_schema",
+                    "name": "study_asset_generation_result",
+                    "schema": StudyAssetGenerationResult.model_json_schema(),
+                    "strict": False,
+                }
+            },
+        )
+        return StudyAssetGenerationResult.model_validate(json.loads(response.output_text))
+
     def _question_prompt(self, request: QuestionGenerationRequest) -> str:
         return f"""
 Tema: {request.topic}
@@ -89,4 +113,24 @@ Respuesta del estudiante:
 
 Material o explicacion de referencia:
 {request.reference_text or "No hay referencia adicional."}
+""".strip()
+
+    def _study_assets_prompt(self, request: StudyAssetGenerationRequest) -> str:
+        return f"""
+Tema: {request.topic}
+Metodo de estudio: {request.study_method}
+Duracion de sesion: {request.duration_minutes} minutos
+
+Genera assets segun estas reglas:
+- visual: summary, flashcards, comparison_table y mind_map.
+- audio: audio_script con secciones narrables y checkpoints de pausa.
+- writing: writing_prompt con preguntas abiertas, instrucciones y criterios de autoevaluacion.
+- mixed: mixed_path con pasos secuenciales que combinen lectura, recuerdo, escritura y quiz.
+
+Usa contenido JSON estable. Ejemplos de claves utiles: sections, cards, rows, nodes, script,
+prompts, rubric, steps, checkpoints. Mantente puntual; el contenido se vera dentro de una app movil.
+No inventes datos fuera del material.
+
+Material de estudio:
+{request.material_text}
 """.strip()

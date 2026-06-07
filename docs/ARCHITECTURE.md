@@ -72,13 +72,17 @@ Flujo base de producto:
 
 1. El usuario crea o sube materiales.
 2. Crea una sesion con tema, duracion, modo y metodo de estudio.
-3. Inicia la sesion; Android aplica el bloqueo y la app muestra contenido activo.
-4. Al completar el tiempo, la sesion pasa a quiz pendiente.
-5. El quiz decide si el telefono se desbloquea o si hay repaso adicional.
+3. El backend genera contenido activo para el metodo elegido.
+4. Inicia la sesion; Android aplica el bloqueo y la app muestra contenido activo.
+5. Al completar el tiempo, la sesion pasa a quiz pendiente.
+6. El quiz decide si el telefono se desbloquea o si hay repaso adicional.
 
 El quiz de desbloqueo oculta respuestas correctas en el cliente. Cada respuesta se evalua con IA
 contra la respuesta esperada y la explicacion generada; el backend calcula el promedio final y cambia
 `unlock_status` a `unlocked` cuando supera el umbral inicial de 0.7.
+
+Los assets de estudio viven en `study_assets` como JSON estructurado. Eso permite que mobile renderice
+resumenes, flashcards, guiones de audio, prompts de escritura o rutas mixtas sin pedir IA en cada vista.
 
 ## Supabase
 

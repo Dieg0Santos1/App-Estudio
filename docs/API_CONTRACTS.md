@@ -132,6 +132,59 @@ Marca la sesion como `completed`, registra `ended_at` y cambia `unlock_status` a
 
 Cancela sesiones `draft` o `active`.
 
+## Contenido Activo de Estudio
+
+Estos assets son el contenido que aparece durante el modo foco. Se generan antes o durante una
+sesion `draft`/`active`, segun el metodo elegido en la sesion.
+
+### Generar Assets
+
+`POST /study-sessions/{session_id}/assets`
+
+```json
+{
+  "force_regenerate": false
+}
+```
+
+Respuesta:
+
+```json
+{
+  "session_id": "00000000-0000-0000-0000-000000000000",
+  "assets": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "session_id": "00000000-0000-0000-0000-000000000000",
+      "material_id": null,
+      "asset_type": "summary",
+      "title": "Resumen guiado",
+      "content": {
+        "sections": [
+          {
+            "heading": "Idea central",
+            "bullets": ["El polimorfismo permite respuestas distintas al mismo mensaje."]
+          }
+        ]
+      },
+      "order_index": 0,
+      "created_at": "2026-06-06T22:20:00Z"
+    }
+  ]
+}
+```
+
+Tipos esperados segun metodo:
+
+- `visual`: `summary`, `flashcards`, `comparison_table`, `mind_map`.
+- `audio`: `audio_script`.
+- `writing`: `writing_prompt`.
+- `mixed`: `mixed_path`.
+
+### Listar Assets
+
+`GET /study-sessions/{session_id}/assets`
+
 ## Quiz de Desbloqueo
 
 El quiz se genera solo cuando la sesion ya esta `completed` y su `unlock_status` esta en
