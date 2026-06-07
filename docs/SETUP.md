@@ -47,5 +47,11 @@ flutter analyze
 Para apuntar la app al backend:
 
 ```powershell
-flutter run --dart-define=API_BASE_URL=http://10.0.2.2:8000
+flutter run `
+  --dart-define=API_BASE_URL=http://10.0.2.2:8000 `
+  --dart-define=SUPABASE_URL=https://tu-proyecto.supabase.co `
+  --dart-define=SUPABASE_ANON_KEY=tu-anon-key
 ```
+
+Cuando Supabase esta configurado, mobile adjunta el token de sesion en `Authorization: Bearer ...`
+para llamar al backend.

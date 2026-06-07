@@ -10,9 +10,20 @@
 }
 ```
 
+## Autenticacion
+
+Los endpoints privados usan Supabase Auth:
+
+```txt
+Authorization: Bearer <access_token>
+```
+
+Durante desarrollo local, el backend mantiene temporalmente `X-User-Id` como fallback para pruebas
+manuales y tests. Mobile debe usar el token real de Supabase.
+
 ## Materiales
 
-Los endpoints de materiales usan temporalmente el header `X-User-Id` hasta conectar Supabase Auth en mobile. El usuario debe existir en `profiles`; en produccion esa fila se crea automaticamente desde Supabase Auth.
+El usuario debe existir en `profiles`; en produccion esa fila se crea automaticamente desde Supabase Auth.
 
 ### Listar Materiales
 
@@ -21,7 +32,7 @@ Los endpoints de materiales usan temporalmente el header `X-User-Id` hasta conec
 Headers:
 
 ```txt
-X-User-Id: 00000000-0000-0000-0000-000000000000
+Authorization: Bearer <access_token>
 ```
 
 Respuesta:
@@ -73,8 +84,8 @@ title: titulo opcional
 
 ## Sesiones de Estudio
 
-Estos endpoints usan temporalmente `X-User-Id`, igual que materiales. Una sesion nace como `draft`,
-pasa a `active` cuando inicia el modo foco y queda en `pending_quiz` al completarse.
+Una sesion nace como `draft`, pasa a `active` cuando inicia el modo foco y queda en `pending_quiz`
+al completarse.
 
 ### Crear Sesion
 

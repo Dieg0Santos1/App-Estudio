@@ -19,4 +19,6 @@ class AppConfig {
   final String apiBaseUrl;
   final String supabaseUrl;
   final String supabaseAnonKey;
+
+  bool get isSupabaseConfigured => supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty;
 }

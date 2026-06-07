@@ -97,3 +97,6 @@ Supabase cubre:
 La primera migracion define las tablas centrales de producto y politicas RLS por usuario.
 
 Cuando Supabase Auth crea un usuario, un trigger crea automaticamente su fila en `profiles`.
+
+Mobile inicia sesion con `supabase_flutter` y adjunta el access token al backend. FastAPI valida ese
+token contra Supabase Auth y deriva el `user_id`; `X-User-Id` queda solo como fallback local temporal.
