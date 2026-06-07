@@ -18,6 +18,7 @@
 {
   "topic": "Programacion Orientada a Objetos",
   "material_text": "Texto extraido del material...",
+  "study_method": "visual",
   "difficulty": "medium",
   "question_type": "mixed",
   "question_count": 5

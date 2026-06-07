@@ -17,6 +17,13 @@ class QuestionType(StrEnum):
     MIXED = "mixed"
 
 
+class StudyMethod(StrEnum):
+    VISUAL = "visual"
+    AUDIO = "audio"
+    WRITING = "writing"
+    MIXED = "mixed"
+
+
 class QuestionOption(BaseModel):
     id: str = Field(description="Stable option identifier, for example A, B, C or D.")
     text: str
@@ -35,6 +42,7 @@ class GeneratedQuestion(BaseModel):
 class QuestionGenerationRequest(BaseModel):
     topic: str
     material_text: str
+    study_method: StudyMethod = StudyMethod.VISUAL
     difficulty: Difficulty = Difficulty.MEDIUM
     question_type: QuestionType = QuestionType.MIXED
     question_count: int = Field(default=5, ge=1, le=10)

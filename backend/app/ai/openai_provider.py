@@ -67,6 +67,7 @@ class OpenAIProvider(AIProvider):
     def _question_prompt(self, request: QuestionGenerationRequest) -> str:
         return f"""
 Tema: {request.topic}
+Metodo de estudio elegido: {request.study_method}
 Dificultad: {request.difficulty}
 Tipo de evaluacion: {request.question_type}
 Cantidad de preguntas: {request.question_count}

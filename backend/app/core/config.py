@@ -19,6 +19,10 @@ class Settings(BaseSettings):
         default=None,
         alias="SUPABASE_SERVICE_ROLE_KEY",
     )
+    supabase_storage_bucket: str = Field(
+        default="study-materials",
+        alias="SUPABASE_STORAGE_BUCKET",
+    )
     cors_origins_raw: str = Field(default="*", alias="CORS_ORIGINS")
 
     @property

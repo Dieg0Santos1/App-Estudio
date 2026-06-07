@@ -25,6 +25,7 @@ Flutter UI
 - `permissions`
 - `home`
 - `study_session`
+- `study_methods`
 - `focus_mode`
 - `unlock_quiz`
 - `results`
@@ -54,6 +55,17 @@ La app movil consume endpoints propios. El backend usa `OPENAI_API_KEY` y la Res
 - detectar conceptos debiles.
 
 Modelo inicial: `gpt-5.4-mini`, elegido por equilibrio entre velocidad, costo y calidad para respuestas breves y evaluaciones educativas.
+
+## Nuevo Enfoque
+
+Cada sesion debe registrar un metodo de estudio:
+
+- `visual`: resumenes, tarjetas, esquemas y flashcards.
+- `audio`: guiones o explicaciones narradas.
+- `writing`: preguntas abiertas, explicaciones y practica escrita.
+- `mixed`: ruta combinada de lectura, escucha, practica y evaluacion.
+
+El modo concentracion no sera solo temporizador: mostrara contenido activo segun el metodo elegido.
 
 ## Supabase
 

@@ -22,6 +22,7 @@ focusstudy-ai/
 - Kotlin nativo se usara para permisos, bloqueo y servicios Android profundos.
 - Supabase maneja auth, datos, storage y pgvector.
 - Las vistas de Stitch/Figma son referencia visual; primero se estabilizan contratos y arquitectura.
+- Cada sesion usa un metodo de estudio: visual, audio, escritura o mixto.
 
 ## Primeros comandos
 
