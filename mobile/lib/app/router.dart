@@ -5,7 +5,8 @@ import '../features/auth/presentation/auth_placeholder_screen.dart';
 import '../features/focus_mode/presentation/focus_mode_placeholder_screen.dart';
 import '../features/home/presentation/home_placeholder_screen.dart';
 import '../features/library/presentation/library_placeholder_screen.dart';
-import '../features/onboarding/presentation/onboarding_placeholder_screen.dart';
+import '../features/onboarding/data/onboarding_repository.dart';
+import '../features/onboarding/presentation/onboarding_screen.dart';
 import '../features/permissions/presentation/permissions_placeholder_screen.dart';
 import '../features/profile/presentation/profile_placeholder_screen.dart';
 import '../features/progress/presentation/progress_placeholder_screen.dart';
@@ -14,13 +15,15 @@ import '../features/study_session/presentation/study_session_placeholder_screen.
 import '../features/unlock_quiz/presentation/unlock_quiz_placeholder_screen.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
+  final onboardingSeen = ref.watch(initialOnboardingSeenProvider);
+
   return GoRouter(
-    initialLocation: AppRoute.onboarding.path,
+    initialLocation: onboardingSeen ? AppRoute.auth.path : AppRoute.onboarding.path,
     routes: [
       GoRoute(
         path: AppRoute.onboarding.path,
         name: AppRoute.onboarding.name,
-        builder: (context, state) => const OnboardingPlaceholderScreen(),
+        builder: (context, state) => const OnboardingScreen(),
       ),
       GoRoute(
         path: AppRoute.auth.path,

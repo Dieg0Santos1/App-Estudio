@@ -5,10 +5,12 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'app/app.dart';
 import 'core/config/app_config.dart';
 import 'core/config/app_config_provider.dart';
+import 'features/onboarding/data/onboarding_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final config = AppConfig.fromEnvironment();
+  final onboardingSeen = await OnboardingRepository.loadSeen();
 
   if (config.isSupabaseConfigured) {
     await Supabase.initialize(
@@ -19,7 +21,10 @@ Future<void> main() async {
 
   runApp(
     ProviderScope(
-      overrides: [appConfigProvider.overrideWithValue(config)],
+      overrides: [
+        appConfigProvider.overrideWithValue(config),
+        initialOnboardingSeenProvider.overrideWithValue(onboardingSeen),
+      ],
       child: const FocusStudyApp(),
     ),
   );
