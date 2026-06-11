@@ -7,7 +7,7 @@ import '../features/home/presentation/home_placeholder_screen.dart';
 import '../features/library/presentation/library_placeholder_screen.dart';
 import '../features/onboarding/data/onboarding_repository.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
-import '../features/permissions/presentation/permissions_placeholder_screen.dart';
+import '../features/permissions/presentation/permissions_screen.dart';
 import '../features/profile/presentation/profile_placeholder_screen.dart';
 import '../features/progress/presentation/progress_placeholder_screen.dart';
 import '../features/results/presentation/results_placeholder_screen.dart';
@@ -33,7 +33,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoute.permissions.path,
         name: AppRoute.permissions.name,
-        builder: (context, state) => const PermissionsPlaceholderScreen(),
+        builder: (context, state) => const PermissionsScreen(),
       ),
       GoRoute(
         path: AppRoute.home.path,
