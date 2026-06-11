@@ -27,7 +27,7 @@ void main() {
 
     await tester.ensureVisible(find.text('Crear cuenta'));
     await tester.tap(find.text('Crear cuenta'));
-    await tester.pump(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 900));
 
     expect(find.text('Nombre'), findsOneWidget);
     expect(find.text('Crear tu cuenta'), findsNothing);

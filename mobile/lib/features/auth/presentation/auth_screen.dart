@@ -30,7 +30,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> with SingleTickerProvid
     super.initState();
     _badgeController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 520),
+      duration: const Duration(milliseconds: 760),
     )..value = 1;
   }
 
@@ -96,7 +96,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> with SingleTickerProvid
       _errorMessage = null;
       _formKey.currentState?.reset();
     });
-    _badgeController.forward(from: 0.92);
+    _badgeController.forward(from: 0);
   }
 
   Future<void> _submit() async {
@@ -252,7 +252,9 @@ class _BrandHeader extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         AnimatedSwitcher(
-          duration: const Duration(milliseconds: 260),
+          duration: const Duration(milliseconds: 420),
+          switchInCurve: Curves.easeOutCubic,
+          switchOutCurve: Curves.easeInCubic,
           child: Text(
             isSignUp ? 'Crea tu espacio de estudio inteligente.' : 'Tu sesion de enfoque empieza aqui.',
             key: ValueKey(isSignUp),
@@ -299,7 +301,7 @@ class _AuthCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSize(
-      duration: const Duration(milliseconds: 320),
+      duration: const Duration(milliseconds: 560),
       curve: Curves.easeOutCubic,
       alignment: Alignment.topCenter,
       child: Container(
@@ -329,17 +331,20 @@ class _AuthCard extends StatelessWidget {
             Form(
               key: formKey,
               child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 360),
-                switchInCurve: Curves.easeOutCubic,
+                duration: const Duration(milliseconds: 620),
+                reverseDuration: const Duration(milliseconds: 460),
+                switchInCurve: Curves.easeOutQuart,
                 switchOutCurve: Curves.easeInCubic,
                 transitionBuilder: (child, animation) {
                   final childKey = child.key as ValueKey<String>?;
                   final incomingSignUp = childKey?.value == 'signup-form';
                   final direction = incomingSignUp ? 1.0 : -1.0;
                   final offset = Tween<Offset>(
-                    begin: Offset(0.12 * direction, 0),
+                    begin: Offset(0.22 * direction, 0),
                     end: Offset.zero,
-                  ).animate(animation);
+                  ).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
+                  );
 
                   return FadeTransition(
                     opacity: animation,
@@ -555,13 +560,13 @@ class _AnimatedFormItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: 1),
-      duration: Duration(milliseconds: 300 + index * 70),
-      curve: Curves.easeOutCubic,
+      duration: Duration(milliseconds: 520 + index * 110),
+      curve: Curves.easeOutQuart,
       builder: (context, value, child) {
         return Opacity(
           opacity: value,
           child: Transform.translate(
-            offset: Offset((1 - value) * 18 * direction, 0),
+            offset: Offset((1 - value) * 26 * direction, 0),
             child: child,
           ),
         );
@@ -799,7 +804,9 @@ class _ModeToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 260),
+      duration: const Duration(milliseconds: 420),
+      switchInCurve: Curves.easeOutCubic,
+      switchOutCurve: Curves.easeInCubic,
       child: Wrap(
         key: ValueKey(isSignUp),
         alignment: WrapAlignment.center,
