@@ -6,6 +6,7 @@ import 'package:focusstudy_ai/features/home/presentation/home_screen.dart';
 import 'package:focusstudy_ai/features/onboarding/data/onboarding_repository.dart';
 import 'package:focusstudy_ai/features/permissions/data/device_permissions.dart';
 import 'package:focusstudy_ai/features/permissions/presentation/permissions_screen.dart';
+import 'package:focusstudy_ai/features/study_session/presentation/study_session_screen.dart';
 
 void main() {
   testWidgets('app starts on onboarding route', (tester) async {
@@ -100,6 +101,33 @@ void main() {
     expect(find.text('Inicio'), findsOneWidget);
     expect(find.text('Progreso'), findsOneWidget);
     expect(find.text('Perfil'), findsOneWidget);
+  });
+
+  testWidgets('study session wizard advances through guided steps', (
+    tester,
+  ) async {
+    await tester.pumpWidget(const MaterialApp(home: StudySessionScreen()));
+
+    await tester.pump();
+
+    expect(find.text('Que vas a estudiar?'), findsOneWidget);
+    expect(find.text('Tema principal'), findsOneWidget);
+    expect(find.text('Material de estudio'), findsOneWidget);
+
+    await tester.tap(find.text('Continuar'));
+    await tester.pump(const Duration(milliseconds: 350));
+
+    expect(find.text('Como quieres aprender?'), findsOneWidget);
+    expect(find.text('Tipo de estudio'), findsOneWidget);
+    expect(find.text('Escritura'), findsOneWidget);
+
+    await tester.tap(find.text('Continuar'));
+    await tester.pump(const Duration(milliseconds: 350));
+
+    expect(find.text('Que quieres bloquear?'), findsOneWidget);
+    expect(find.text('Apps a bloquear'), findsOneWidget);
+    expect(find.text('Resumen de la sesion'), findsOneWidget);
+    expect(find.text('Iniciar sesion'), findsOneWidget);
   });
 }
 

@@ -11,7 +11,7 @@ import '../features/permissions/presentation/permissions_screen.dart';
 import '../features/profile/presentation/profile_placeholder_screen.dart';
 import '../features/progress/presentation/progress_placeholder_screen.dart';
 import '../features/results/presentation/results_placeholder_screen.dart';
-import '../features/study_session/presentation/study_session_placeholder_screen.dart';
+import '../features/study_session/presentation/study_session_screen.dart';
 import '../features/unlock_quiz/presentation/unlock_quiz_placeholder_screen.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -45,7 +45,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoute.studySession.path,
         name: AppRoute.studySession.name,
-        builder: (context, state) => const StudySessionPlaceholderScreen(),
+        builder: (context, state) => const StudySessionScreen(),
       ),
       GoRoute(
         path: AppRoute.focusMode.path,
