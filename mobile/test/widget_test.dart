@@ -15,4 +15,22 @@ void main() {
 
     expect(find.text('Convierte tu celular en una herramienta de estudio.'), findsOneWidget);
   });
+
+  testWidgets('auth screen switches to sign up mode', (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [initialOnboardingSeenProvider.overrideWithValue(true)],
+        child: const FocusStudyApp(),
+      ),
+    );
+    await tester.pump();
+
+    await tester.ensureVisible(find.text('Crear cuenta'));
+    await tester.tap(find.text('Crear cuenta'));
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.text('Nombre'), findsOneWidget);
+    expect(find.text('Crear tu cuenta'), findsNothing);
+    expect(find.text('Crear cuenta'), findsWidgets);
+  });
 }

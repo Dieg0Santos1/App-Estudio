@@ -41,6 +41,10 @@ class AuthRepository {
     );
   }
 
+  Future<void> resetPasswordForEmail(String email) {
+    return _client.auth.resetPasswordForEmail(email);
+  }
+
   Future<void> signOut() {
     return _client.auth.signOut();
   }

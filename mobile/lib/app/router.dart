@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/auth/presentation/auth_placeholder_screen.dart';
+import '../features/auth/presentation/auth_screen.dart';
 import '../features/focus_mode/presentation/focus_mode_placeholder_screen.dart';
 import '../features/home/presentation/home_placeholder_screen.dart';
 import '../features/library/presentation/library_placeholder_screen.dart';
@@ -28,7 +28,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoute.auth.path,
         name: AppRoute.auth.name,
-        builder: (context, state) => const AuthPlaceholderScreen(),
+        builder: (context, state) => const AuthScreen(),
       ),
       GoRoute(
         path: AppRoute.permissions.path,
