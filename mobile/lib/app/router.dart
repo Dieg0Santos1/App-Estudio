@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../features/auth/presentation/auth_screen.dart';
 import '../features/focus_mode/presentation/focus_mode_placeholder_screen.dart';
-import '../features/home/presentation/home_placeholder_screen.dart';
+import '../features/home/presentation/home_screen.dart';
 import '../features/library/presentation/library_placeholder_screen.dart';
 import '../features/onboarding/data/onboarding_repository.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
@@ -18,7 +18,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   final onboardingSeen = ref.watch(initialOnboardingSeenProvider);
 
   return GoRouter(
-    initialLocation: onboardingSeen ? AppRoute.auth.path : AppRoute.onboarding.path,
+    initialLocation: onboardingSeen
+        ? AppRoute.auth.path
+        : AppRoute.onboarding.path,
     routes: [
       GoRoute(
         path: AppRoute.onboarding.path,
@@ -38,7 +40,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoute.home.path,
         name: AppRoute.home.name,
-        builder: (context, state) => const HomePlaceholderScreen(),
+        builder: (context, state) => const HomeScreen(),
       ),
       GoRoute(
         path: AppRoute.studySession.path,

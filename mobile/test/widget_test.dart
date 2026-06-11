@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:focusstudy_ai/app/app.dart';
+import 'package:focusstudy_ai/features/home/presentation/home_screen.dart';
 import 'package:focusstudy_ai/features/onboarding/data/onboarding_repository.dart';
 import 'package:focusstudy_ai/features/permissions/data/device_permissions.dart';
 import 'package:focusstudy_ai/features/permissions/presentation/permissions_screen.dart';
@@ -65,6 +66,40 @@ void main() {
     expect(find.text('Configura tu modo de enfoque'), findsOneWidget);
     expect(find.text('Continuar'), findsOneWidget);
     expect(find.text('Activo'), findsWidgets);
+  });
+
+  testWidgets('home screen shows dashboard and five navigation tabs', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          devicePermissionsProvider.overrideWithValue(
+            const _FakeDevicePermissionsService(
+              PermissionSnapshot(
+                notificationsAllowed: true,
+                usageAccessAllowed: true,
+                overlayAllowed: true,
+                isAndroid: true,
+              ),
+            ),
+          ),
+        ],
+        child: const MaterialApp(home: HomeScreen()),
+      ),
+    );
+
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+
+    expect(find.text('Hola, Estudiante'), findsOneWidget);
+    expect(find.text('Nueva sesion'), findsOneWidget);
+    expect(find.text('Progreso semanal'), findsOneWidget);
+    expect(find.text('Biblioteca'), findsOneWidget);
+    expect(find.text('Sesiones'), findsOneWidget);
+    expect(find.text('Inicio'), findsOneWidget);
+    expect(find.text('Progreso'), findsOneWidget);
+    expect(find.text('Perfil'), findsOneWidget);
   });
 }
 
